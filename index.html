@@ -118,6 +118,61 @@
             display: flex;
             align-items: center;
         }
+
+        /* Portfolio Grid Layout (4 Columns) */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .portfolio-card {
+            background: #fff;
+            border: 1px solid var(--gray-border);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .portfolio-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+        }
+        .portfolio-img-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 66%; /* Custom golden-ratio box sizing */
+            overflow: hidden;
+            background: #eaeff2;
+        }
+        .portfolio-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .portfolio-info {
+            padding: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .portfolio-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        .portfolio-desc {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.3;
+        }
         
         /* Experience Timeline */
         .job { margin-bottom: 1.5rem; padding-left: 1rem; border-left: 3px solid var(--primary); }
@@ -126,10 +181,14 @@
         
         footer { text-align: center; padding: 2rem; color: #666; font-size: 0.9rem; }
 
-        /* Responsiveness for small screens */
+        /* Responsiveness adjustments */
+        @media (max-width: 992px) {
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+        }
         @media (max-width: 768px) {
             .header-container { flex-direction: column; text-align: center; padding: 0 5%; gap: 1.5rem; }
             .contact-info { justify-content: center; }
+            .portfolio-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -257,6 +316,102 @@
                 </div>
                 <div class="skill-label">Tools Installation</div>
             </div>
+
+        </div>
+    </section>
+
+    <!-- NEW PORTFOLIO SECTION: 4 COLUMNS X 2 ROWS -->
+    <section id="portfolio">
+        <h2>Featured Projects & System Implementations</h2>
+        <div class="portfolio-grid">
+            
+            <!-- Row 1 / Card 1 -->
+            <a href="https://github.com/" target="_blank" class="portfolio-card">
+                <div class="portfolio-img-wrapper">
+                    <img src="project1.jpg" alt="Aviation System Module" onerror="this.src='https://via.placeholder.com/300x200?text=Aviation+System'">
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-title">Aviation Web Platform</div>
+                    <div class="portfolio-desc">Full-stack modular enterprise application developed using ASP.NET in C#.</div>
+                </div>
+            </a>
+
+            <!-- Row 1 / Card 2 -->
+            <a href="https://github.com/" target="_blank" class="portfolio-card">
+                <div class="portfolio-img-wrapper">
+                    <img src="project2.jpg" alt="Site-to-Site VPN Setup" onerror="this.src='https://via.placeholder.com/300x200?text=VPN+Infrastructure'">
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-title">Multi-Branch Networks</div>
+                    <div class="portfolio-desc">Engineered secure site-to-site WAN frameworks and unified topologies.</div>
+                </div>
+            </a>
+
+            <!-- Row 1 / Card 3 -->
+            <a href="https://github.com/" target="_blank" class="portfolio-card">
+                <div class="portfolio-img-wrapper">
+                    <img src="project3.jpg" alt="Enterprise ERP Module" onerror="this.src='https://via.placeholder.com/300x200?text=Desktop+ERP+App'">
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-title">Custom Desktop ERP</div>
+                    <div class="portfolio-desc">Developed accounting and material tracking engines using WinForms and SQL.</div>
+                </div>
+            </a>
+
+            <!-- Row 1 / Card 4 -->
+            <a href="https://github.com/" target="_blank" class="portfolio-card">
+                <div class="portfolio-img-wrapper">
+                    <img src="project4.jpg" alt="Synology Storage Optimization" onerror="this.src='https://via.placeholder.com/300x200?text=Synology+NAS'">
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-title">Centralized NAS Storage</div>
+                    <div class="portfolio-desc">Configured robust file-sharing clusters with auto-backups and sync loops.</div>
+                </div>
+            </a>
+
+            <!-- Row 2 / Card 5 -->
+            <a href="https://github.com/" target="_blank" class="portfolio-card">
+                <div class="portfolio-img-wrapper">
+                    <img src="project5.jpg" alt="Custom HR & Payroll Module" onerror="this.src='https://via.placeholder.com/300x200?text=HR+Payroll+System'">
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-title">HR & Payroll Engines</div>
+                    <div class="portfolio-desc">Clean-architecture MVP apps written in C#.NET with secure database backends.</div>
+                </div>
+            </a>
+
+            <!-- Row 2 / Card 6 -->
+            <a href="https://github.com/" target="_blank" class="portfolio-card">
+                <div class="portfolio-img-wrapper">
+                    <img src="project6.jpg" alt="CCTV System Matrix Map" onerror="this.src='https://via.placeholder.com/300x200?text=CCTV+Topology'">
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-title">Surveillance Networks</div>
+                    <div class="portfolio-desc">Managed hardware setup and configured local/online live tracking streams.</div>
+                </div>
+            </a>
+
+            <!-- Row 2 / Card 7 -->
+            <a href="https://github.com/" target="_blank" class="portfolio-card">
+                <div class="portfolio-img-wrapper">
+                    <img src="project7.jpg" alt="Active Directory Configuration" onerror="this.src='https://via.placeholder.com/300x200?text=Windows+Server'">
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-title">Windows Domain Setup</div>
+                    <div class="portfolio-desc">Handled server domain administration, global policies, and user provisioning.</div>
+                </div>
+            </a>
+
+            <!-- Row 2 / Card 8 -->
+            <a href="https://github.com/" target="_blank" class="portfolio-card">
+                <div class="portfolio-img-wrapper">
+                    <img src="project8.jpg" alt="SEO Diagnostics Dashboard" onerror="this.src='https://via.placeholder.com/300x200?text=SEO+Optimization'">
+                </div>
+                <div class="portfolio-info">
+                    <div class="portfolio-title">Web Traffic Analytics</div>
+                    <div class="portfolio-desc">Monitored corporate visibility metrics through targeted SEO diagnostics.</div>
+                </div>
+            </a>
 
         </div>
     </section>
