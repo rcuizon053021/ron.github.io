@@ -7,36 +7,141 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <style>
         :root {
-            --primary: #2a7596; /* Matches the color in image_fc1623.png */
+            --primary: #2a7596; /* Matches color theme from image_fc1623.png */
             --dark: #222;
             --light: #f4f7f6;
+            --gray-border: #e2e8f0;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background: var(--light); color: var(--dark); line-height: 1.6; }
-        header { background: white; padding: 2rem 10%; text-align: center; border-bottom: 3px solid var(--primary); }
-        h1 { color: var(--primary); margin-bottom: 0.5rem; }
+        
+        /* Modernized Header with Profile Picture on Left */
+        header { 
+            background: white; 
+            padding: 2.5rem 10%; 
+            border-bottom: 3px solid var(--primary); 
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+        .profile-container {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .header-text {
+            flex-grow: 1;
+        }
+        .header-text h1 { color: var(--primary); margin-bottom: 0.25rem; font-size: 2.2rem; }
+        .header-text .title-sub { font-size: 1.1rem; color: #555; font-weight: 600; margin-bottom: 0.75rem; }
+        .contact-info { display: flex; flex-wrap: wrap; gap: 1.5rem; font-size: 0.95rem; color: #666; }
+        .contact-item { display: flex; align-items: center; gap: 0.4rem; }
+        
         .container { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
         section { background: white; padding: 2rem; margin-bottom: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        h2 { color: var(--primary); border-bottom: 2px solid var(--light); padding-bottom: 0.5rem; margin-bottom: 1rem; }
+        h2 { color: var(--primary); border-bottom: 2px solid var(--light); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
         
-        /* Grid for Expertise Circles */
-        .expertise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-        .skill-card { background: var(--light); padding: 1.5rem; text-align: center; border-radius: 50%; width: 180px; height: 180px; margin: auto; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 4px solid var(--primary); font-weight: bold; font-size: 0.9rem; }
+        /* Optimized Grid for Expertise Circles with Percentages */
+        .expertise-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 1.5rem; 
+            margin-top: 1.5rem; 
+        }
+        .skill-card { 
+            background: #fff; 
+            padding: 1.5rem 1rem; 
+            text-align: center; 
+            border-radius: 8px; 
+            border: 1px solid var(--gray-border);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 1rem;
+        }
+        
+        /* Dynamic SVG Skill Rings */
+        .progress-ring {
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+        .progress-ring svg {
+            width: 100px;
+            height: 100px;
+            transform: rotate(-90deg);
+        }
+        .progress-ring circle {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+        .progress-ring .bg {
+            stroke: #e2e8f0;
+        }
+        .progress-ring .bar {
+            stroke: var(--primary);
+            transition: stroke-dashoffset 0.3s;
+        }
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        .skill-label {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #444;
+            min-height: 2.7rem;
+            display: flex;
+            align-items: center;
+        }
         
         /* Experience Timeline */
         .job { margin-bottom: 1.5rem; padding-left: 1rem; border-left: 3px solid var(--primary); }
-        .job-title { font-weight: bold; color: var(--dark); }
-        .company { color: var(--primary); font-size: 0.9rem; font-weight: 600; }
+        .job-title { font-weight: bold; color: var(--dark); font-size: 1.1rem; }
+        .company { color: var(--primary); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.4rem; }
         
         footer { text-align: center; padding: 2rem; color: #666; font-size: 0.9rem; }
+
+        /* Responsiveness for small screens */
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; padding: 2rem 5%; }
+            .contact-info { justify-content: center; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Roniel Sato Cuizon</h1>
-    <p>IT Supervisor / IT Manager / Full-Stack Developer</p>
-    <p><i data-feather="mail" style="width:14px; height:14px;"></i> ronielcuizon@gmail.com | <i data-feather="phone" style="width:14px; height:14px;"></i> 09471916560</p>
+    <div class="profile-container">
+        <!-- Replace 'profile.jpg' with your actual image path or GitHub URL path -->
+        <img src="profile.jpg" alt="Roniel Sato Cuizon" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
+    </div>
+    <div class="header-text">
+        <h1>Roniel Sato Cuizon</h1>
+        <div class="title-sub">IT Supervisor / IT Manager / Full-Stack Developer</div>
+        <div class="contact-info">
+            <div class="contact-item"><i data-feather="mail"></i> <a href="mailto:ronielcuizon@gmail.com" style="color:inherit; text-decoration:none;">ronielcuizon@gmail.com</a></div>
+            <div class="contact-item"><i data-feather="phone"></i> 09471916560</div>
+            <div class="contact-item"><i data-feather="map-pin"></i> Cebu City, Philippines</div>
+        </div>
+    </div>
 </header>
 
 <div class="container">
@@ -48,14 +153,103 @@
     <section id="expertise">
         <h2>Areas of Expertise</h2>
         <div class="expertise-grid">
-            <div class="skill-card">App & Web Development</div>
-            <div class="skill-card">Network & Firewall Infrastructure</div>
-            <div class="skill-card">System Management</div>
-            <div class="skill-card">CCTV & Network Cabling Mgmt</div>
-            <div class="skill-card">Graphic & Video Editing</div>
-            <div class="skill-card">IP Telephony</div>
-            <div class="skill-card">Com Tech Support</div>
-            <div class="skill-card">Tools Installation</div>
+            
+            <!-- Skill 1: 95% -->
+            <div class="skill-card">
+                <div class="progress-ring">
+                    <svg>
+                        <circle class="bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="bar" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="12.5"></circle>
+                    </svg>
+                    <div class="progress-text">95%</div>
+                </div>
+                <div class="skill-label">App & Web Development</div>
+            </div>
+
+            <!-- Skill 2: 90% -->
+            <div class="skill-card">
+                <div class="progress-ring">
+                    <svg>
+                        <circle class="bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="bar" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="25.1"></circle>
+                    </svg>
+                    <div class="progress-text">90%</div>
+                </div>
+                <div class="skill-label">Network & Firewall Infrastructure</div>
+            </div>
+
+            <!-- Skill 3: 85% -->
+            <div class="skill-card">
+                <div class="progress-ring">
+                    <svg>
+                        <circle class="bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="bar" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="37.6"></circle>
+                    </svg>
+                    <div class="progress-text">85%</div>
+                </div>
+                <div class="skill-label">System Management</div>
+            </div>
+
+            <!-- Skill 4: 80% -->
+            <div class="skill-card">
+                <div class="progress-ring">
+                    <svg>
+                        <circle class="bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="bar" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="50.2"></circle>
+                    </svg>
+                    <div class="progress-text">80%</div>
+                </div>
+                <div class="skill-label">CCTV & Network Cabling Mgmt</div>
+            </div>
+
+            <!-- Skill 5: 75% -->
+            <div class="skill-card">
+                <div class="progress-ring">
+                    <svg>
+                        <circle class="bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="bar" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="62.8"></circle>
+                    </svg>
+                    <div class="progress-text">75%</div>
+                </div>
+                <div class="skill-label">Graphic & Video Editing</div>
+            </div>
+
+            <!-- Skill 6: 85% -->
+            <div class="skill-card">
+                <div class="progress-ring">
+                    <svg>
+                        <circle class="bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="bar" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="37.6"></circle>
+                    </svg>
+                    <div class="progress-text">85%</div>
+                </div>
+                <div class="skill-label">IP Telephony</div>
+            </div>
+
+            <!-- Skill 7: 90% -->
+            <div class="skill-card">
+                <div class="progress-ring">
+                    <svg>
+                        <circle class="bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="bar" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="25.1"></circle>
+                    </svg>
+                    <div class="progress-text">90%</div>
+                </div>
+                <div class="skill-label">Com Tech Support</div>
+            </div>
+
+            <!-- Skill 8: 80% -->
+            <div class="skill-card">
+                <div class="progress-ring">
+                    <svg>
+                        <circle class="bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="bar" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="50.2"></circle>
+                    </svg>
+                    <div class="progress-text">80%</div>
+                </div>
+                <div class="skill-label">Tools Installation</div>
+            </div>
+
         </div>
     </section>
 
